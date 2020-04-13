@@ -1,0 +1,29 @@
+<h1>首頁歐</h1>
+
+<div class="row">
+  <div class="col-6">
+
+    <table>
+      <thead>開團清單</thead>
+      <tr>
+        <th>
+          開團者
+        </th>
+        <th>
+          店家名稱
+        </th>
+        <th>
+          參加
+        </th>
+      </tr>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.user.name, user_path(id: event.user.id) %></td>
+          <td><%= link_to event.store.name, store_path(id: event.store.id) %></td>
+          
+        </tr>
+      <% end %>
+      
+    </table>
+  </div>
+</div>

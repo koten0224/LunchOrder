@@ -1,0 +1,77 @@
+
+
+<div style="display: flex;">
+  <div style="width: 50%;">
+    <%= form_for user, url: "/regist", method: "post" do |form| %>
+      <table>
+        <tr>
+          <td>
+            <%= form.label :account, "帳號" %>
+          </td>
+          <td>
+            <%= form.text_field :account %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= form.label :password, "密碼" %>
+          </td>
+          <td>
+            <%= form.password_field :password %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= form.label :password_confirmation, "密碼確認" %>
+          </td>
+          <td>
+            <%= form.password_field :password_confirmation %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= form.label :name, "顯示名稱" %>
+          </td>
+          <td>
+            <%= form.text_field :name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= form.label :email, "信箱" %>
+          </td>
+          <td>
+            <%= form.email_field :email %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="actions">
+              <%= form.submit "送出" %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+  <div style="width: 50%;">
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2>出錯啦！</h2>
+  
+        <ul>
+          <% user.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+

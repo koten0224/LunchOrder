@@ -1,0 +1,49 @@
+<h1>新增店鋪</h1>
+
+<div class="row">
+  <div class="col-6">
+  <%= form_for @store, url: store_new_path, method: 'post' do |f|%>
+    <table>
+      <tr>
+        <td><%= f.label :name, "店家名稱" %></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :adress, "店址" %></td>
+        <td><%= f.text_field :adress%></td>
+      </tr>
+      <tr>
+        <td><%= f.label :tel, "電話" %></td>
+        <td><%= f.text_field :tel%></td>
+      </tr>
+      <tr>
+        <td><%= f.label :catagory, "分類" %></td>
+        <td><%= f.collection_select :catagory_id, Catagory.all, :id, :name, prompt: "請選擇店家類型" %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= text_field :new_cata, :name , placeholder: "或者此處填入新類型"%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit %></td>
+      </tr>
+    </table>
+  <% end %>
+  </div>
+  <div class="col-6">
+    <% if @store.errors.any? %>
+      <div id="error_explanation">
+        <h2>出錯啦！</h2>
+
+        <ul>
+          <% @store.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

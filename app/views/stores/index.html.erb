@@ -1,0 +1,22 @@
+
+<%= notice %>
+<h1>店鋪清單</h1>
+
+<div class="row">
+  <div class="col-5">
+    <%= link_to "新增店家", store_new_path %>
+    <table>
+      <tr>
+        <th>店名</th>
+        <th>類型</th>
+      </tr>
+      <% @stores.each do |store| %>
+      <tr>
+        <td> <%= link_to store.name, store %>  </td>
+        <td> <%= store.catagory.name %> </td>
+      </tr>
+      <% end %>
+    </table>
+    
+  </div>
+</div>

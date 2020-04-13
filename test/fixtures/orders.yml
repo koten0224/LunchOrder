@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  user: one
+  dish: one
+  total_price: 1
+  payed: 1
+  description: MyString
+
+two:
+  event: two
+  user: two
+  dish: two
+  total_price: 1
+  payed: 1
+  description: MyString

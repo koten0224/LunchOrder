@@ -1,0 +1,27 @@
+
+<div style="width: 30%;">
+
+  <%= form_for @user, url: login_path do |f| %>
+    <table>
+      <tr>
+        <td>
+          <%= f.label :account, "帳號" %>
+        </td>
+        <td>
+          <%= f.text_field :account %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.label :password, "密碼" %>
+        </td>
+        <td>
+          <%= f.password_field :password %>
+        </td>
+      </tr>
+    </table>
+    <div style="width: 30%;">
+      <%= f.submit "登入" %>
+    </div>
+  <% end %>
+</div>
