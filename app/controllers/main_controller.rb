@@ -1,6 +1,9 @@
 class MainController < ApplicationController
   def index
-    session[:path] = "/"
+    if not session[:koten9487]
+      session[:koten9487] = {}
+    end
+    session[:koten9487][:path] = index_path
     @events = Event.where(available: true).includes(:user).includes(:store)
   end
 

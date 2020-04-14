@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :curr_user, 
-                only: [:show, :edit, :update, :destroy]
+                only: [:show, :edit, :update]
 
   def index
     redirect_to regist_path

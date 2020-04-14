@@ -6,8 +6,8 @@
     <table>
       <thead>菜單</thead>
       
-      <% @groups.keys.sort.each do |key| %>
-        <% group_body = @groups[key] %>
+      <% @menu.keys.sort.each do |key| %>
+        <% group_body = @menu[key] %>
         <tr>
           <th> <%= group_body[:name] %>系列</th>
         </tr>

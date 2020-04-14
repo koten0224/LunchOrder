@@ -3,9 +3,9 @@ class DishesController < ApplicationController
   def create
     @dish_new = Dish.new dish_params
     if @dish_new.save
-      redirect_to store_path(id: params[:id]), notice: "商品新增成功"
+      redirect_to store_path(store_id: params[:store_id]), notice: "商品新增成功"
     else
-      render store_path(id: params[:id])
+      render store_path(store_id: params[:store_id])
     end
   end
 
