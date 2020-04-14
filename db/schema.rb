@@ -10,12 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_070925) do
+ActiveRecord::Schema.define(version: 2020_04_13_151918) do
 
   create_table "catagories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "dish_groups", force: :cascade do |t|
+    t.string "name"
+    t.integer "store_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["store_id"], name: "index_dish_groups_on_store_id"
+  end
+
+  create_table "dish_styles", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "dish_group_id"
+    t.index ["dish_group_id"], name: "index_dish_styles_on_dish_group_id"
+    t.index ["store_id"], name: "index_dish_styles_on_store_id"
   end
 
   create_table "dishes", force: :cascade do |t|
@@ -25,6 +43,10 @@ ActiveRecord::Schema.define(version: 2020_04_11_070925) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "dish_style_id", default: 1, null: false
+    t.integer "dish_group_id", default: 1, null: false
+    t.index ["dish_group_id"], name: "index_dishes_on_dish_group_id"
+    t.index ["dish_style_id"], name: "index_dishes_on_dish_style_id"
     t.index ["store_id"], name: "index_dishes_on_store_id"
   end
 
@@ -73,6 +95,11 @@ ActiveRecord::Schema.define(version: 2020_04_11_070925) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "dish_groups", "stores"
+  add_foreign_key "dish_styles", "dish_groups"
+  add_foreign_key "dish_styles", "stores"
+  add_foreign_key "dishes", "dish_groups"
+  add_foreign_key "dishes", "dish_styles"
   add_foreign_key "dishes", "stores"
   add_foreign_key "events", "stores"
   add_foreign_key "events", "users"

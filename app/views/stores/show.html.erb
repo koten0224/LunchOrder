@@ -4,18 +4,29 @@
   <div class="col-6">
 
     <table>
-      <thead>餐點列表</thead>
-      <tr>
-        <th>餐點名稱</th>
-        <th>價格</th>
-      </tr>
-      <% @dishes.each do |dish| %>
+      <thead>菜單</thead>
+      
+      <% @groups.keys.sort.each do |key| %>
+        <% group_body = @groups[key] %>
         <tr>
-          <td><%= dish.name %></td>
-          <td><%= dish.price %></td>
-          
+          <th> <%= group_body[:name] %>系列</th>
         </tr>
-        
+        <tr>
+          <th>餐點名稱</th>
+          <th>價格</th>
+        </tr>
+        <% group_body[:styles].keys.sort.each do |s_key| %>
+          <% style_body = group_body[:styles][s_key] %>
+          <tr>
+            <th> <%= style_body[:name] %> </th>
+          </tr>
+          <% style_body[:dishes].each do |dish| %>
+            <tr>
+              <td><%= dish.name %></td>
+              <td><%= dish.price %></td>
+            </tr>
+          <% end %>
+        <% end %>
       <% end %>
     </table>
   </div>

@@ -7,7 +7,7 @@ class StoresController < ApplicationController
 
 
   def index
-    @stores = Store.all
+    @stores = Store.includes(:catagory)
   end
 
   def new
@@ -29,7 +29,22 @@ class StoresController < ApplicationController
   end
 
   def show
-    @dishes = @store.dishes
+
+    @groups = Hash.new
+
+    @store.dish_groups.includes(:dish_styles).includes(:dishes).each do |group|
+
+      @groups[group.id] = { name: group.name, styles: {} }
+      group_hash = @groups[group.id][:styles]
+
+      group.dish_styles.each do |style|
+        group_hash[style.id] = {name: style.name, dishes: [] }
+      end
+
+      group.dishes.each do |dish|
+        group_hash[dish.dish_style_id][:dishes].push(dish)
+      end
+    end
   end
 
   def edit
@@ -43,6 +58,7 @@ class StoresController < ApplicationController
       render :new
     end
   end
+
 
   private
 
