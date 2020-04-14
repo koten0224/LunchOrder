@@ -4,6 +4,8 @@ class StoresController < ApplicationController
                 only: [ :show, :edit, :update]
   before_action :curr_user,
                 only: [ :create ]
+  before_action :permit_check,
+                except: [ :index, :show ]
 
 
   def index

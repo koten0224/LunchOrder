@@ -6,5 +6,8 @@ class MainController < ApplicationController
     session[:koten9487][:path] = index_path
     @events = Event.where(available: true).includes(:user).includes(:store)
   end
+  
+  def no_permit
+  end
 
 end

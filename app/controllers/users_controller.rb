@@ -1,12 +1,16 @@
 class UsersController < ApplicationController
   before_action :curr_user, 
-                only: [:show, :edit, :update]
+                only: [:edit, :update]
+  before_action :permit_check, 
+                only: [:edit, :update]
+
 
   def index
     redirect_to regist_path
   end
 
   def show
+    @user = User.find(params[:user_id])
   end
 
   def new

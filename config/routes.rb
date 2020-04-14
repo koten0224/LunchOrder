@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get  "/store/:store_id",      to: "stores#show",     as: "store"
   get  "/store/:store_id/edit", to: "stores#edit",     as: "edit_store"
   post "/store/:store_id/edit", to: "stores#update"
+  get  "/no_permit",            to: "main#no_permit",  as: "no_permit"
 
   # resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

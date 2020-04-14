@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
     @user = User.find(session["koten9487"]["user_id"])
   end
 
+  def permit_check
+    if not session["koten9487"]["user_id"]
+      redirect_to no_permit_path
+    end
+  end
+
 end
