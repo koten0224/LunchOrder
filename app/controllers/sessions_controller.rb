@@ -9,8 +9,8 @@ class SessionsController < ApplicationController
     password = params[:user][:password]
     @user = User.find_by(account: account).try(:authenticate, password)
     if @user
-      session[:koten9487] = user_data
-      redirect_to index_path
+      session[:koten9487][:user] = user_data
+      redirect_to session["koten9487"]["path"]
     else
       @user = User.new account: params[:account]
       render :new
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:koten9487] = {}
-    redirect_to index_path
+    session[:koten9487][:user] = nil
+    redirect_to session["koten9487"]["path"]
   end
 end

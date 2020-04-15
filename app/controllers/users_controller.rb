@@ -4,12 +4,13 @@ class UsersController < ApplicationController
   before_action :permit_check, 
                 only: [:edit, :update]
 
-
   def index
+    session[:koten9487][:path] = regist_path
     redirect_to regist_path
   end
 
   def show
+    session[:koten9487][:path] = user_path(user_id: params[:user_id])
     @user = User.find(params[:user_id])
   end
 

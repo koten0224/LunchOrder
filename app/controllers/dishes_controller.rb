@@ -24,12 +24,12 @@ class DishesController < ApplicationController
   private
 
   def dish_params
-    params[:dish_new].permit(
-      :store_id,
+    params[:dish].permit(
       :name, 
       :price, 
       :description, 
-      :group, 
+      :store_id,
+      :dish_group_id,
       :dish_style_id
     )
   end

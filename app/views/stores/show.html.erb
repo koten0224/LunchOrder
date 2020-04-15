@@ -2,32 +2,64 @@
 <h1><%= @store.name %></h1>
 <div class="row">
   <div class="col-6">
+    <p><%= @store.description %></p>
 
     <table>
       <thead>菜單</thead>
       
-      <% @menu.keys.sort.each do |key| %>
-        <% group_body = @menu[key] %>
+      <% @menu.keys.sort.each do |g_key| %>
+
+        <% group = @menu[g_key] %>
         <tr>
-          <th> <%= group_body[:name] %>系列</th>
+          <th> <%= group[:name] %>系列</th>
         </tr>
         <tr>
           <th>餐點名稱</th>
           <th>價格</th>
         </tr>
-        <% group_body[:styles].keys.sort.each do |s_key| %>
-          <% style_body = group_body[:styles][s_key] %>
-          <tr>
-            <th> <%= style_body[:name] %> </th>
-          </tr>
-          <% style_body[:dishes].each do |dish| %>
+
+        <% group[:styles].keys.sort.each do |s_key| %>
+
+          <% style = group[:styles][s_key] %>
+          <tr><th> <%= style[:name] %> </th></tr>
+
+          <% style[:dishes].each do |dish| %>
             <tr>
               <td><%= dish.name %></td>
               <td><%= dish.price %></td>
             </tr>
           <% end %>
-        <% end %>
+
+          <tr>
+            <%= form_for @dish, url: new_dish_path(store_id: params[:store_id]), method: 'post' do |f| %>
+              <td><%= f.text_field :name, placeholder: '餐點名稱' %></td>
+              <td><%= f.number_field :price, placeholder: '價格' %></td>
+              <%= f.hidden_field :store_id, value: params[:store_id] %>
+              <%= f.hidden_field :dish_style_id, value: s_key %>
+              <%= f.hidden_field :dish_group_id, value: g_key %>
+              <td><%= f.submit '新增餐點' %></td>
+            <% end %>
+          </tr>
+          <% end %>
+        <tr>
+          <%= form_for @dish_style, url: new_dish_style_path(store_id: params[:store_id]), method: 'post' do |f| %>
+            <td><%= f.text_field :name, placeholder: '欄位名稱' %></td>
+            <%= f.hidden_field :store_id, value: params[:store_id] %>
+            <%= f.hidden_field :dish_group_id, value: g_key %>
+            <td><%= f.submit '新增欄位' %></td>
+          <% end %>
+        </tr>
+
       <% end %>
+      <tr>
+        <%= form_for @dish_group, url: new_dish_group_path(store_id: params[:store_id]), method: 'post' do |f| %>
+          <td><%= f.text_field :name, placeholder: '群組名稱' %></td>
+          <%= f.hidden_field :store_id, value: params[:store_id] %>
+          <td><%= f.submit '新增群組' %></td>
+        <% end %>
+      </tr>
+
+
     </table>
   </div>
 </div>

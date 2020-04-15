@@ -12,11 +12,11 @@ class ApplicationController < ActionController::Base
   def curr_user
     # debugger
     # id = (params[:user_id] or )
-    @user = User.find(session["koten9487"]["user_id"])
+    @user = User.find(session["koten9487"]["user"]["user_id"])
   end
 
   def permit_check
-    if not session["koten9487"]["user_id"]
+    if not session["koten9487"]["user"]
       redirect_to no_permit_path
     end
   end

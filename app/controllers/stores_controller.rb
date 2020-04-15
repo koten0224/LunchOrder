@@ -9,10 +9,12 @@ class StoresController < ApplicationController
 
 
   def index
+    session[:koten9487][:path] = all_stores_path
     @stores = Store.includes(:catagory)
   end
 
   def new
+    session[:koten9487][:path] = store_new_path
     @store = Store.new
     @new_cata = Catagory.new
   end
@@ -31,7 +33,11 @@ class StoresController < ApplicationController
   end
 
   def show
+    session[:koten9487][:path] = store_path(store_id: params[:store_id])
     @menu = @store.menu
+    @dish = Dish.new
+    @dish_group = DishGroup.new
+    @dish_style = DishStyle.new
   end
 
   def edit
