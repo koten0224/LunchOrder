@@ -4,3 +4,4 @@ class DishGroup < ApplicationRecord
   has_many :dish_styles
   validates :name, presence: true
 end
+  
