@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  
   private
   def user_data
     {
@@ -10,7 +11,6 @@ class ApplicationController < ActionController::Base
   end
   
   def curr_user
-    # debugger
     # id = (params[:user_id] or )
     @user = User.find(session["koten9487"]["user"]["user_id"])
   end
@@ -20,5 +20,6 @@ class ApplicationController < ActionController::Base
       redirect_to no_permit_path
     end
   end
+
 
 end

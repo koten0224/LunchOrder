@@ -10,4 +10,7 @@ class MainController < ApplicationController
   def no_permit
   end
 
+  def code
+  end
+
 end

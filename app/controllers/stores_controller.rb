@@ -33,7 +33,9 @@ class StoresController < ApplicationController
   end
 
   def show
-    session[:koten9487][:path] = store_path(store_id: params[:store_id])
+    puts "hello"
+    puts params
+    session[:koten9487][:path] = store_path(@store)
     @menu = @store.menu
     @dish = Dish.new
     @dish_group = DishGroup.new
